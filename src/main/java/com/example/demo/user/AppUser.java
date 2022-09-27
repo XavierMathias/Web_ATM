@@ -1,13 +1,21 @@
 package com.example.demo.user;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 public class AppUser {
 
     @Id
+    @SequenceGenerator(
+            name = "appuser_sequence",
+            allocationSize = 1,
+            sequenceName = "appuser"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "appuser_sequence"
+    )
     private Long id;
     private String firstName;
     private String lastName;
