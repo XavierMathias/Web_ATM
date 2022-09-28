@@ -1,9 +1,13 @@
 package com.example.demo.user;
 
+import com.example.demo.account.BankAccount;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
+@Table(name = "client")
 public class AppUser {
 
     @Id
@@ -17,9 +21,15 @@ public class AppUser {
             generator = "appuser_sequence"
     )
     private Long id;
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+    @Column(name = "last_name", nullable = false)
     private String lastName;
+    @Column(unique = true, name = "email")
     private String email;
+    @Column(name = "bank_account_id")
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<BankAccount> bankAccounts;
     private String password;
     private Integer age;
     private LocalDate dob;
