@@ -10,7 +10,7 @@ public class AppUser {
     @SequenceGenerator(
             name = "appuser_sequence",
             allocationSize = 1,
-            sequenceName = "appuser"
+            sequenceName = "appuser_sequence"
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,

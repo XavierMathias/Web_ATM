@@ -2,15 +2,12 @@
 package com.example.demo.user;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "api/v1/appuser")
+@RequestMapping(path = "/api/v1/userapp")
 public class AppUserController {
 
     private final AppUserService appUserService;
@@ -29,6 +26,16 @@ public class AppUserController {
     public void registerNewUser(@RequestBody AppUser appUser){
         appUserService.addNewUser(appUser);
     }
+
+    public void deletingUser(@PathVariable("userId") Long userId){
+        appUserService.deleteUser(userId);
+    }
+
+    public void updateUser(@PathVariable("userId") Long userId, @RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName, @RequestParam(required = false) String email){
+        appUserService.updateUser(userId, firstName, lastName, email);
+    }
+
+
 
 
 
